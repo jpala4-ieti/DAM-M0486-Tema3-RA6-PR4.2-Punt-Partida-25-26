@@ -17,7 +17,7 @@ const Prompt = sequelize.define('Prompt', {
     },
     model: {
         type: DataTypes.STRING,
-        defaultValue: "qwen2.5-coder",
+        defaultValue: process.env.CHAT_API_OLLAMA_MODEL,
         allowNull: false
     },
     stream: {

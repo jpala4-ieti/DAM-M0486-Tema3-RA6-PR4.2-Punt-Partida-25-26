@@ -25,10 +25,19 @@ const listOllamaModels = async (req, res, next) => {
             digest: model.digest
         }));
 
-        logger.info(`Models recuperats correctament`, { count: models.length });
+        // Filtrar només el model per defecte
+        const defaultModel = models.find(m => m.name === DEFAULT_OLLAMA_MODEL);
+        const filteredModels = defaultModel ? [defaultModel] : [];
+
+        logger.info(`Models recuperats correctament`, { 
+            count: models.length,
+            defaultModel: DEFAULT_OLLAMA_MODEL,
+            defaultModelExists: !!defaultModel
+        });
+
         res.json({
-            total_models: models.length,
-            models: models
+            total_models: filteredModels.length,
+            models: filteredModels
         });
     } catch (error) {
         logger.error('Error recuperant models d\'Ollama', {

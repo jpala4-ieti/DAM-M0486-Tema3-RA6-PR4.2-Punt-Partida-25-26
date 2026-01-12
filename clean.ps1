@@ -44,16 +44,16 @@ $Host.UI.RawUI.ForegroundColor = "White"
 Write-Host "=== Script de Neteja de Projectes ===" -ForegroundColor Green
 
 # Comprovar si estem al directori correcte
-if (-not (Test-Path -Path "xat-api") -or -not (Test-Path -Path "xat-server")) {
-    Write-Host "Error: Executa l'script des del directori pare de xat-api i xat-server" -ForegroundColor Red
+if (-not (Test-Path -Path "xat-api")) {
+    Write-Host "Error: Executa l'script des del directori pare de xat-api" -ForegroundColor Red
     pause
     exit
 }
 
 # Netejar projectes
 Clean-Project -ProjectPath "xat-api"
-Clean-Project -ProjectPath "xat-server"
-Clean-Project -ProjectPath "xat-client"
+Clean-Project -ProjectPath "xat-cli"
+Clean-Project -ProjectPath "xat-web"
 Clean-Project -ProjectPath "practica-codi"
 
 # Missatge de conclusió

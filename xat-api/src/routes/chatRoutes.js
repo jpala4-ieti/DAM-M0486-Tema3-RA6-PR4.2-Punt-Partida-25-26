@@ -22,10 +22,11 @@ const { registerPrompt, getConversation, listOllamaModels } = require('../contro
  *               prompt:
  *                 type: string
  *                 description: Text del prompt
+ *                 default: Diga'm el nom d'una bona cançó composada en els darrers 10 anys amb cantant i canço no massivament coneguts
  *               model:
  *                 type: string
  *                 description: Model d'Ollama a utilitzar
- *                 default: llama3.2-vision:latest
+ *                 default: qwen2.5vl:7b
  *               stream:
  *                 type: boolean
  *                 description: Indica si la resposta ha de ser en streaming

@@ -26,15 +26,15 @@ clean_project() {
 }
 
 # Comprovar si estem a la carpeta correcta
-if [ ! -d "xat-api" ] || [ ! -d "xat-server" ]; then
-    echo "Error: Executa l'script des del directori pare de xat-api i xat-server"
+if [ ! -d "xat-api" ]; then
+    echo "Error: Executa l'script des del directori pare de xat-api"
     exit 1
 fi
 
 # Netejar projectes
 clean_project "xat-api"
-clean_project "xat-server"
-clean_project "xat-client"
+clean_project "xat-cli"
+clean_project "xat-web"
 clean_project "practica-codi"
 
 echo "Neteja completada."
