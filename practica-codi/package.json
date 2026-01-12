@@ -14,7 +14,6 @@
   "dependencies": {
     "axios": "^1.7.9",
     "csv-parser": "^3.1.0",
-    "dotenv": "^16.4.7",
-    "practica-codi": "file:"
+    "dotenv": "^16.4.7"
   }
 }

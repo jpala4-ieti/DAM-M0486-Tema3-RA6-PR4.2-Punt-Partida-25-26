@@ -1,5 +1,5 @@
 {
-  "name": "chat-server",
+  "name": "chat-web",
   "version": "1.0.0",
   "main": "src/server.js",
   "scripts": {

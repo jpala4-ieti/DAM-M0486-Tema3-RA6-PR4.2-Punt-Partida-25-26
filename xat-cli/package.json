@@ -1,5 +1,5 @@
 {
-  "name": "xat-client",
+  "name": "xat-cli",
   "version": "1.0.0",
   "main": "src/client.js",
   "type": "module",
@@ -13,8 +13,7 @@
     "commander": "^11.0.0",
     "dotenv": "^16.0.3",
     "inquirer": "^9.0.0",
-    "ora": "^6.0.0",
-    "xat-client": "file:"
+    "ora": "^6.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"

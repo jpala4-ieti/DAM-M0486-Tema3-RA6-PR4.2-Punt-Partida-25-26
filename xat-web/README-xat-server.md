@@ -21,7 +21,7 @@ const API_ENDPOINT = `http://127.0.0.1:3000/api`;
 2. Configura les variables en el fitxer `.env`:
 ```env
 # Port on s'executarà el servidor web
-PORT=...
+XAT_WEB_PORT=...
 ```
 
 ## Executar l'Aplicació
