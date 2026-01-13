@@ -28,6 +28,4 @@ npm run ex3
 
 Documentació dels models usats
 
-- https://ollama.com/library/llama3
-- https://ollama.com/library/llama3.2-vision
-- https://ollama.com/blog/llama3.2-vision
+- https://ollama.com/library/qwen2.5vl
