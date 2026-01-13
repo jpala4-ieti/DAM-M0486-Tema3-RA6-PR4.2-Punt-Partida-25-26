@@ -146,7 +146,7 @@ async function loadModels() {
             modelSelector.appendChild(option);
         });
 
-        const defaultModel = data.models.find(m => m.name === 'llama3.2-vision:latest') 
+        const defaultModel = data.models.find(m => m.name === 'qwen2.5vl:7b') 
             || data.models[0];
         
         if (defaultModel) {

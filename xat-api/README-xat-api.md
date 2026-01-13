@@ -36,6 +36,20 @@ L'API estarà disponible a `http://localhost:3000` i la documentació Swagger a 
 
 ## Verificació de Funcionament
 
+### Verificació automàtica amb tests
+```bash
+npm test
+```
+
+O bé, mentre estem en desenvolupament, execució contínua
+
+```bash
+npm run test:watch
+```
+
+
+### Verificació manual
+
 Pots verificar que l'API funciona correctament amb les següents comandes curl:
 
 1. Llistar models disponibles:

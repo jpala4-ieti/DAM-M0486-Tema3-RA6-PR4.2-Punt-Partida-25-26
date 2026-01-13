@@ -38,8 +38,4 @@ const Prompt = sequelize.define('Prompt', {
     }
 });
 
-// Establir relació
-Prompt.belongsTo(Conversation);
-Conversation.hasMany(Prompt);
-
 module.exports = Prompt;
