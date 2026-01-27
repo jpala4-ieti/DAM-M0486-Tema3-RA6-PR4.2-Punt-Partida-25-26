@@ -118,7 +118,6 @@ xat-api/
 ```
 
 ## Gestió d'Errors
-
 L'API inclou gestió d'errors per:
 - Errors de validació d'UUID
 - Errors de connexió amb Ollama
@@ -126,3 +125,6 @@ L'API inclou gestió d'errors per:
 - Errors en el streaming
 
 Els errors retornen respostes JSON amb codis d'estat HTTP apropiats i missatges descriptius.
+
+## Arrencar servidor mock
+npx prism mock ./swagger.yaml
