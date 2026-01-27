@@ -8,9 +8,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // Importacions principals
-const express = require('express');
 const cors = require('cors');
+const express = require('express');
 const swaggerUi = require('swagger-ui-express');
+const fs = require('fs');
+const YAML = require('yamljs');
+
 const swaggerSpecs = require('./src/config/swagger');
 const { sequelize } = require('./src/config/database');
 const errorHandler = require('./src/middleware/errorHandler');
@@ -30,6 +33,23 @@ app.use(express.json());
 
 // Configuració de Swagger per la documentació de l'API
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+
+app.get('/api-docs-json', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swaggerSpecs);
+});
+
+app.get('/api-docs-yaml', (req, res) => {
+    res.setHeader('Content-Type', 'text/yaml');
+    // Convertim l'objecte swaggerSpecs a string YAML
+    const yamlSpecs = YAML.stringify(swaggerSpecs, 10); 
+    res.send(yamlSpecs);
+});
+
+const yamlContent = YAML.stringify(swaggerSpecs, 10);
+fs.writeFileSync('./swagger.yaml', yamlContent);
+
+console.log('✅ Fitxer swagger.yaml actualitzat correctament');
 
 /**
  * Middleware de logging personalitzat
@@ -112,12 +132,19 @@ async function startServer() {
         
         // Iniciar el servidor HTTP
         app.listen(PORT, () => {
+            const baseUrl = `http://127.0.0.1:${PORT}`;
+            
             logger.info('Servidor iniciat correctament', {
                 port: PORT,
                 mode: process.env.NODE_ENV,
-                docs: `http://127.0.0.1:${PORT}/api-docs`
+                endpoints: {
+                    ui: `${baseUrl}/api-docs`,
+                    json: `${baseUrl}/api-docs-json`,
+                    yaml: `${baseUrl}/api-docs-yaml`
+                }
             });
         });
+
     } catch (error) {
         logger.error('Error fatal en iniciar el servidor', {
             error: error.message,
