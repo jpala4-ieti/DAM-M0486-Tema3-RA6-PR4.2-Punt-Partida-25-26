@@ -21,22 +21,18 @@ const swaggerOptions = {
                     properties: {
                         id: {
                             type: 'string',
-                            format: 'uuid',
-                            description: 'ID únic de la conversa'
+                            format: 'uuid'
                         },
                         createdAt: {
                             type: 'string',
-                            format: 'date-time',
-                            description: 'Data de creació de la conversa'
+                            format: 'date-time'
                         },
                         updatedAt: {
                             type: 'string',
-                            format: 'date-time',
-                            description: "Data d'última actualització"
+                            format: 'date-time'
                         },
                         prompts: {
                             type: 'array',
-                            description: 'Llista de prompts associats a la conversa',
                             items: {
                                 $ref: '#/components/schemas/Prompt'
                             }
@@ -48,82 +44,24 @@ const swaggerOptions = {
                     properties: {
                         id: {
                             type: 'string',
-                            format: 'uuid',
-                            description: 'ID únic del prompt'
+                            format: 'uuid'
                         },
                         prompt: {
-                            type: 'string',
-                            description: 'Text del prompt enviat'
+                            type: 'string'
                         },
                         response: {
-                            type: 'string',
-                            description: "Resposta generada per l'LLM"
+                            type: 'string'
                         },
                         model: {
-                            type: 'string',
-                            description: 'Model utilitzat per generar la resposta'
+                            type: 'string'
                         },
                         createdAt: {
                             type: 'string',
-                            format: 'date-time',
-                            description: 'Data de creació del prompt'
+                            format: 'date-time'
                         },
                         conversationId: {
                             type: 'string',
-                            format: 'uuid',
-                            description: 'ID de la conversa a la qual pertany'
-                        }
-                    }
-                },
-                Error: {
-                    type: 'object',
-                    properties: {
-                        message: {
-                            type: 'string',
-                            description: "Missatge descriptiu de l'error"
-                        },
-                        error: {
-                            type: 'string',
-                            description: 'Detalls tècnics de l\'error (opcional)'
-                        },
-                        errors: {
-                            type: 'array',
-                            description: 'Llista d\'errors de validació (opcional)',
-                            items: {
-                                type: 'object',
-                                properties: {
-                                    field: {
-                                        type: 'string',
-                                        description: 'Camp que conté l\'error'
-                                    },
-                                    message: {
-                                        type: 'string',
-                                        description: 'Missatge específic de l\'error'
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                OllamaModel: {
-                    type: 'object',
-                    properties: {
-                        name: {
-                            type: 'string',
-                            description: 'Nom del model'
-                        },
-                        modified_at: {
-                            type: 'string',
-                            format: 'date-time',
-                            description: 'Data de l\'última modificació del model'
-                        },
-                        size: {
-                            type: 'integer',
-                            description: 'Mida del model en bytes'
-                        },
-                        digest: {
-                            type: 'string',
-                            description: 'Hash digest del model per verificar integritat'
+                            format: 'uuid'
                         }
                     }
                 },
@@ -134,23 +72,20 @@ const swaggerOptions = {
                         conversationId: {
                             type: 'string',
                             format: 'uuid',
-                            description: 'ID de la conversa existent (opcional)'
+                            description: 'ID de conversa existent (opcional)'
                         },
                         prompt: {
                             type: 'string',
                             minLength: 1,
-                            maxLength: 5000,
-                            description: 'Text del prompt a enviar'
+                            maxLength: 5000
                         },
                         model: {
                             type: 'string',
-                            default: 'qwen2.5vl:7b',
-                            description: 'Model d\'Ollama a utilitzar'
+                            default: 'qwen2.5vl:7b'
                         },
                         stream: {
                             type: 'boolean',
-                            default: false,
-                            description: 'Indica si la resposta ha de ser en streaming'
+                            default: false
                         }
                     }
                 },
@@ -159,30 +94,97 @@ const swaggerOptions = {
                     properties: {
                         conversationId: {
                             type: 'string',
-                            format: 'uuid',
-                            description: 'ID de la conversa'
+                            format: 'uuid'
                         },
                         promptId: {
                             type: 'string',
-                            format: 'uuid',
-                            description: 'ID del prompt creat'
+                            format: 'uuid'
                         },
                         prompt: {
-                            type: 'string',
-                            description: 'Text del prompt enviat'
+                            type: 'string'
                         },
                         response: {
-                            type: 'string',
-                            description: 'Resposta generada'
+                            type: 'string'
                         },
                         model: {
-                            type: 'string',
-                            description: 'Model utilitzat'
+                            type: 'string'
                         },
                         timestamp: {
                             type: 'string',
-                            format: 'date-time',
-                            description: 'Timestamp de la resposta'
+                            format: 'date-time'
+                        }
+                    }
+                },
+                Error: {
+                    type: 'object',
+                    properties: {
+                        message: {
+                            type: 'string'
+                        },
+                        error: {
+                            type: 'string'
+                        },
+                        errors: {
+                            type: 'array',
+                            items: {
+                                type: 'object',
+                                properties: {
+                                    field: { type: 'string' },
+                                    message: { type: 'string' }
+                                }
+                            }
+                        }
+                    }
+                },
+                ModelsList: {
+                    type: 'object',
+                    properties: {
+                        total_models: {
+                            type: 'integer'
+                        },
+                        models: {
+                            type: 'array',
+                            items: {
+                                type: 'object',
+                                properties: {
+                                    name: { type: 'string' },
+                                    modified_at: { type: 'string', format: 'date-time' },
+                                    size: { type: 'integer' },
+                                    digest: { type: 'string' }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            responses: {
+                BadRequest: {
+                    description: 'Dades invàlides',
+                    content: {
+                        'application/json': {
+                            schema: {
+                                $ref: '#/components/schemas/Error'
+                            }
+                        }
+                    }
+                },
+                NotFound: {
+                    description: 'Recurs no trobat',
+                    content: {
+                        'application/json': {
+                            schema: {
+                                $ref: '#/components/schemas/Error'
+                            }
+                        }
+                    }
+                },
+                ServerError: {
+                    description: 'Error intern del servidor',
+                    content: {
+                        'application/json': {
+                            schema: {
+                                $ref: '#/components/schemas/Error'
+                            }
                         }
                     }
                 }
@@ -191,15 +193,15 @@ const swaggerOptions = {
         tags: [
             {
                 name: 'Prompts',
-                description: 'Operacions relacionades amb la creació i gestió de prompts'
+                description: 'Gestió de prompts i respostes'
             },
             {
                 name: 'Conversations',
-                description: 'Operacions per recuperar converses i el seu historial'
+                description: 'Gestió de converses'
             },
             {
                 name: 'Chat',
-                description: 'Operacions generals del xat i configuració de models'
+                description: 'Configuració i models'
             }
         ]
     },
